@@ -27,12 +27,12 @@ const ingredientList = {
         <div class="card-body">
             <div class="row g-0">
                 <div class="col-sm-4">
-                    <img src="${ingredient.imageURL}" alt="${ingredient.name}" style="width: 100%">
+                <img src="${imageURL}" alt="${name}" style="width: 100%">
                 </div>
                 <div class="col-sm-8">
-                    <h5 class="card-title">${ingredient.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${ingredient.calories} Calories</h6>
-                    <p class="card-text">${ingredient.description}</p>
+                <h5 class="card-title">${name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${calories} Calories</h6>
+                <p class="card-text">${description}</p>
                     ${sandwichHasIngredient ? `
                         <button class="btn btn-danger toggle-button">Remove</button>
                     ` : `
@@ -42,26 +42,26 @@ const ingredientList = {
             </div>
         </div>
     `
-        const toggleButton = ingredientCard.querySelector('.toggle-button')
-        toggleButton.addEventListener('click', () => {
-            ingredientList.toggleIngredient(ingredient)
-        })
+    const toggleButton = ingredientCard.querySelector('.toggle-button')
+    toggleButton.addEventListener('click', () => {
+        ingredientList.toggleIngredient(ingredient)
+    })
 
-        return ingredientCard
-    },
+    return ingredientCard
+},
 
-    // Runs when the user clicks 'Add' or 'Remove' on a ingredient card
-    toggleIngredient(ingredient) {
-        let sandwichHasIngredient = cart.selectedSandwich.ingredients.includes(ingredient.name);
-        if (sandwichHasIngredient) {
-            cart.selectedSandwich.ingredients = cart.selectedSandwich.ingredients.filter(x => x !== ingredient.name)
-        } else {
-            sandwichHasIngredient = true;
-            cart.selectedSandwich.ingredients.push(ingredient.name)
-        }
-        cart.saveSelectedSandwich()
-        cart.render()
-        ingredientList.render()
+// Runs when the user clicks 'Add' or 'Remove' on a ingredient card
+toggleIngredient(ingredient) {
+    let sandwichHasIngredient = cart.selectedSandwich.ingredients.includes(ingredient.name);
+    if (sandwichHasIngredient) {
+        cart.selectedSandwich.ingredients = cart.selectedSandwich.ingredients.filter(x => x !== ingredient.name)
+    } else {
+        sandwichHasIngredient = true;
+        cart.selectedSandwich.ingredients.push(ingredient.name)
     }
+    cart.saveSelectedSandwich()
+    cart.render()
+    ingredientList.render()
+}
 
 }

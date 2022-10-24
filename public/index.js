@@ -37,5 +37,4 @@ async function main() {
         })
     })
 }
-
 main()
